@@ -61,9 +61,30 @@ function deleteDB(id) {
   });
 }
 
+/**
+ * DB에 있는 데이터를 업데이트 하는 함수
+ * @param {number} id 데이터 id
+ * @param {string} title 업데이트 할 제목
+ * @param {string} content 엡데이트 할 내용
+ */
+function updateDB(id, title, content) {
+  const query = `UPDATE ${table_name} SET title = '${title}', content = '${content}' WHERE id = '${id}'`;
+
+  connection.query(query, (err, results, fields) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log("Update 성공");
+
+    connection.end(); // 서버 닫기. 과부하 방지
+  });
+}
+
 // 함수를 외부 파일들도 사용할 수 있게 하는 코드
 module.exports = {
   getDB,
   insertDB,
   deleteDB,
+  updateDB,
 };

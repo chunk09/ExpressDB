@@ -1,5 +1,5 @@
 const express = require("express");
-const { getDB, insertDB, deleteDB } = require("./database/model");
+const { getDB, insertDB, deleteDB, updateDB } = require("./database/model");
 
 const app = express();
 
@@ -39,6 +39,16 @@ app.get("/board/delete/:id", (req, res) => {
 
   // 모든 과정을 완료한 후 localhost:5000/board로 이동
   res.redirect("/board");
+});
+
+app.get("/board/update/", (req, res) => res.sendFile(__dirname + "/pages/update.html"));
+
+app.post("/board/update/", (req, res) => {
+  const id = req.body.id;
+  const title = req.body.title;
+  const content = req.body.content;
+
+  updateDB(id, title, content);
 });
 
 // 서버를 5000번대 포트로 열기
