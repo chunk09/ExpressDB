@@ -4,7 +4,8 @@
   "description": "DB 테스트",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "author": "Lambda09",
   "license": "ISC",

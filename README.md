@@ -4,7 +4,7 @@ Express.js로 만든 데이터베이스 샘플
 
 ## 실행
 ```
-npm start
+npm run dev
 ```
 
 ## 사용 라이브러리
