@@ -1,0 +1,16 @@
+{
+  "name": "expressdb",
+  "version": "1.0.0",
+  "description": "DB 테스트",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "author": "Lambda",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
+  }
+}
