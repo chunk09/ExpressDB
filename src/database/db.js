@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
   user: process.env.DB_USER, // 유저 이름
   password: process.env.DB_PASSWORD, // 유저 비밀번호
   database: process.env.DB_DATABASE, // 데이터베이스 이름
+  port: process.env.DB_PORT // 포트
 });
 
 module.exports = { connection };
