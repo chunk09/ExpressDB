@@ -1,5 +1,5 @@
 const express = require("express");
-const { getDB, insertDB } = require("./database/model");
+const { getDB, insertDB, deleteDB } = require("./database/model");
 
 const app = express();
 
@@ -12,6 +12,8 @@ app.get("/", (req, res) => {
 
   getDB((err, results) => {
     console.log(`result : ${results[0].title}`);
+
+    console.log("Hello");
   });
 });
 
@@ -22,6 +24,14 @@ app.post("/board/post", (req, res) => {
   const content = req.body.content;
 
   insertDB(title, content);
+
+  res.redirect("/board");
+});
+
+app.get("/board/delete/:id", (req, res) => {
+  const id = req.params.id;
+
+  deleteDB(id);
 
   res.redirect("/board");
 });
