@@ -9,11 +9,15 @@ app.use(express.urlencoded({ extended: false }));
 
 // localhost:5000
 app.get("/", (req, res) => {
-  res.send("Hello world");
-
   getDB((err, results) => {
     // DB에 있는 값 중 에서 첫번째 행에 있는 제목 가져오기
-    console.log(`result : ${results[0].title}`);
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+
+    results.forEach((number, index) => {
+      res.write(`${results[index].id}. ${results[index].title} - ${results[index].content} <br/>`);
+    });
+
+    res.end();
   });
 });
 
@@ -28,7 +32,7 @@ app.post("/board/post", (req, res) => {
   insertDB(title, content);
 
   // 모든 과정을 완료한 후 localhost:5000/board로 이동
-  res.redirect("/board");
+  res.redirect("/");
 });
 
 // localhost:5000/board/delete/{게시물 id}
@@ -38,7 +42,7 @@ app.get("/board/delete/:id", (req, res) => {
   deleteDB(id);
 
   // 모든 과정을 완료한 후 localhost:5000/board로 이동
-  res.redirect("/board");
+  res.redirect("/");
 });
 
 app.get("/board/update/", (req, res) => res.sendFile(__dirname + "/pages/update.html"));
@@ -49,6 +53,8 @@ app.post("/board/update/", (req, res) => {
   const content = req.body.content;
 
   updateDB(id, title, content);
+
+  res.redirect("/");
 });
 
 // 서버를 5000번대 포트로 열기

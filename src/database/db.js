@@ -5,10 +5,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const connection = mysql.createConnection({
-  host: "localhost", // 호스트 이름
-  user: "root", // 유저 이름
+  host: process.env.DB_HOST, // 호스트 이름
+  user: process.env.DB_USER, // 유저 이름
   password: process.env.DB_PASSWORD, // 유저 비밀번호
-  database: "board", // 데이터베이스 이름
+  database: process.env.DB_DATABASE, // 데이터베이스 이름
 });
 
 module.exports = { connection };

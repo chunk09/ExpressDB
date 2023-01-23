@@ -2,14 +2,14 @@ const { connection } = require("./db");
 
 const table_name = "board"; // 테이블 이름
 
-connection.connect(); // 서버 열기
-
 /**
  * DB에 있는데이터 가져오는 함수
  * @param callback 콜백 함수를 이용해서 값을 얻을 수 있게 한다.
  */
 function getDB(callback) {
   const query = `SELECT * FROM ${table_name}`;
+
+  // connection.connect(); // 서버 열기
 
   connection.query(query, (err, results, fields) => {
     if (err) {
@@ -20,7 +20,7 @@ function getDB(callback) {
 
     callback(null, results);
 
-    connection.end(); // 서버 닫기. 과부하 방지
+    // connection.end(); // 서버 닫기. 과부하 방지
   });
 }
 
@@ -32,6 +32,8 @@ function getDB(callback) {
 function insertDB(title, content) {
   const query = `INSERT INTO ${table_name} (title, content) VALUES ('${title}', '${content}')`;
 
+  // connection.connect(); // 서버 열기
+
   connection.query(query, (err, results, fields) => {
     if (err) {
       throw err;
@@ -39,7 +41,7 @@ function insertDB(title, content) {
 
     console.log("Insert 성공");
 
-    connection.end(); // 서버 닫기. 과부하 방지
+    // connection.end(); // 서버 닫기. 과부하 방지
   });
 }
 
@@ -50,6 +52,8 @@ function insertDB(title, content) {
 function deleteDB(id) {
   const query = `DELETE FROM ${table_name} WHERE id = '${id}'`;
 
+  // connection.connect(); // 서버 열기
+
   connection.query(query, (err, results, fields) => {
     if (err) {
       throw err;
@@ -57,7 +61,7 @@ function deleteDB(id) {
 
     console.log("Delete 성공");
 
-    connection.end(); // 서버 닫기. 과부하 방지
+    // connection.end(); // 서버 닫기. 과부하 방지
   });
 }
 
@@ -70,6 +74,8 @@ function deleteDB(id) {
 function updateDB(id, title, content) {
   const query = `UPDATE ${table_name} SET title = '${title}', content = '${content}' WHERE id = '${id}'`;
 
+  // connection.connect(); // 서버 열기
+
   connection.query(query, (err, results, fields) => {
     if (err) {
       throw err;
@@ -77,7 +83,7 @@ function updateDB(id, title, content) {
 
     console.log("Update 성공");
 
-    connection.end(); // 서버 닫기. 과부하 방지
+    // connection.end(); // 서버 닫기. 과부하 방지
   });
 }
 
