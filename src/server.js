@@ -13,6 +13,8 @@ app.get("/", (req, res) => {
     // DB에 있는 값 중 에서 첫번째 행에 있는 제목 가져오기
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 
+    console.log(`result : ${results}`);
+
     results.forEach((number, index) => {
       res.write(`${results[index].id}. ${results[index].title} - ${results[index].content} <br/>`);
     });
